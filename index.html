@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IGNOU University</title>
+  <style>
+    :root {
+      --primary-color: #003366; /* IGNOU blue */
+      --secondary-color: #FFD700; /* Gold accent */
+      --light-bg: #f8f9fa;
+      --dark-text: #2c3e50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-text);
+    }
+
+    header {
+      background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.9)),
+                  url('https://images.unsplash.com/photo-1576495199011-eb94736d05d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    nav {
+      background: var(--primary-color);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      margin: 0 0.5rem;
+      font-weight: 500;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    main {
+      padding: 2rem;
+      min-height: 70vh;
+      background: var(--light-bg);
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s ease;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-field {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2);
+    }
+
+    button {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .programme-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .student-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .student-list li {
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      background: var(--light-bg);
+      border-radius: 4px;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .rating-stars {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .star {
+      cursor: pointer;
+      color: #ddd;
+      font-size: 1.8rem;
+      transition: all 0.2s ease;
+    }
+
+    .star:hover {
+      transform: scale(1.2);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: 500;
+      animation: slideIn 0.3s ease;
+    }
+
+    .toast.success {
+      background: #28a745;
+    }
+
+    .toast.error {
+      background: #dc3545;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem;
+      }
+      
+      .logo-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      
+      nav {
+        text-align: center;
+      }
+      
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://1000logos.net/wp-content/uploads/2022/11/IGNOU-Emblem.png" alt="IGNOU Logo" class="logo">
+      <div class="header-text">
+        <h1>Indira Gandhi National Open University</h1>
+        <p>The People's University</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#home" onclick="showPage('home'); return false;" class="active">Home</a>
+    <a href="#programmes" onclick="showPage('programmes'); return false;">Programmes</a>
+    <a href="#registration" onclick="showPage('registration'); return false;">Registration</a>
+    <a href="#feedback" onclick="showPage('feedback'); return false;">Feedback</a>
+  </nav>
+
+  <main id="content">
+    <!-- Dynamic Content Loads Here -->
+  </main>
+
+  <script>
+    let currentRating = 0;
+
+    function showPage(page) {
+      const content = document.getElementById('content');
+      document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      switch(page) {
+        case 'home':
+          content.innerHTML = `
+            <div class="card">
+              <h2>Welcome to IGNOU</h2>
+              <p>India's largest open university with over 4 million students. Our mission is to provide inclusive, flexible education to learners across the nation.</p>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="text-align: center;">
+                  <h3 style="color: var(--primary-color); font-size: 2rem;">4M+</h3>
+                  <p>Students Enrolled</p>
+                </div>
+                <div style="text-align: center;">
+                  <h3 style="color: var(--primary-color); font-size: 2rem;">200+</h3>
+                  <p>Programmes Offered</p>
+                </div>
+                <div style="text-align: center;">
+                  <h3 style="color: var(--primary-color); font-size: 2rem;">67</h3>
+                  <p>Regional Centers</p>
+                </div>
+              </div>
+              
+              <div style="margin-top: 2rem;">
+                <h3>Recent Announcements</h3>
+                <ul style="margin-top: 1rem;">
+                  <li>🎯 Admission open for July 2023 session</li>
+                  <li>🏆 IGNOU ranked #1 in Open and Distance Learning</li>
+                  <li>📢 New programmes launched in AI and Data Science</li>
+                </ul>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'programmes':
+          content.innerHTML = `
+            <div class="card">
+              <h2>Our Programmes</h2>
+              <p style="margin-bottom: 1.5rem;">Explore our wide range of academic programmes designed for diverse learning needs.</p>
+              
+              <div class="programme-list">
+                <div class="programme-card">
+                  <h3 style="color: var(--primary-color);">Bachelor's Programmes</h3>
+                  <ul class="student-list">
+                    <li>🎓 Bachelor of Arts (BA)</li>
+                    <li>🎓 Bachelor of Commerce (BCom)</li>
+                    <li>🎓 Bachelor of Computer Applications (BCA)</li>
+                    <li>🎓 Bachelor of Science (BSc)</li>
+                  </ul>
+                </div>
+                <div class="programme-card">
+                  <h3 style="color: var(--primary-color);">Master's Programmes</h3>
+                  <ul class="student-list">
+                    <li>🎓 Master of Arts (MA)</li>
+                    <li>🎓 Master of Commerce (MCom)</li>
+                    <li>🎓 Master of Computer Applications (MCA)</li>
+                    <li>🎓 Master of Science (MSc)</li>
+                  </ul>
+                </div>
+                <div class="programme-card">
+                  <h3 style="color: var(--primary-color);">Diploma & Certificate</h3>
+                  <ul class="student-list">
+                    <li>📜 Diploma in Management</li>
+                    <li>📜 Diploma in Early Childhood Care</li>
+                    <li>📜 Certificate in Information Technology</li>
+                    <li>📜 Certificate in Arabic Language</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'registration':
+          content.innerHTML = `
+            <div class="card">
+              <h2>Student Registration</h2>
+              <p style="margin-bottom: 1.5rem;">Begin your educational journey with IGNOU. Fill out the form below to register.</p>
+              
+              <form onsubmit="handleRegistration(event)" novalidate>
+                <div class="form-field">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-field">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-field">
+                  <label for="phone">Mobile Number</label>
+                  <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-field">
+                  <label for="programme">Select Programme</label>
+                  <select id="programme" required>
+                    <option value="">-- Choose Programme --</option>
+                    <option>Bachelor of Arts (BA)</option>
+                    <option>Bachelor of Commerce (BCom)</option>
+                    <option>Bachelor of Computer Applications (BCA)</option>
+                    <option>Bachelor of Science (BSc)</option>
+                    <option>Master of Arts (MA)</option>
+                    <option>Master of Commerce (MCom)</option>
+                    <option>Master of Computer Applications (MCA)</option>
+                    <option>Master of Science (MSc)</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="address">Mailing Address</label>
+                  <textarea id="address" rows="3" required></textarea>
+                </div>
+
+                <button type="submit">Submit Application</button>
+              </form>
+            </div>
+          `;
+          break;
+
+        case 'feedback':
+          content.innerHTML = `
+            <div class="card">
+              <h2>Student Feedback</h2>
+              <p style="margin-bottom: 1.5rem;">We value your feedback to improve our services.</p>
+              
+              <form onsubmit="handleFeedback(event)" novalidate>
+                <div class="form-field">
+                  <label for="fbName">Your Name</label>
+                  <input type="text" id="fbName" required>
+                </div>
+
+                <div class="form-field">
+                  <label>Your Experience</label>
+                  <div class="rating-stars" id="ratingStars">
+                    <span class="star" data-rating="1" onclick="setRating(1)">★</span>
+                    <span class="star" data-rating="2" onclick="setRating(2)">★</span>
+                    <span class="star" data-rating="3" onclick="setRating(3)">★</span>
+                    <span class="star" data-rating="4" onclick="setRating(4)">★</span>
+                    <span class="star" data-rating="5" onclick="setRating(5)">★</span>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="feedbackText">Your Feedback</label>
+                  <textarea id="feedbackText" rows="4" required></textarea>
+                </div>
+
+                <div class="form-field">
+                  <label for="suggestion">Suggestions for Improvement</label>
+                  <textarea id="suggestion" rows="2"></textarea>
+                </div>
+
+                <button type="submit">Submit Feedback</button>
+              </form>
+            </div>
+          `;
+          updateStars();
+          break;
+      }
+    }
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        programme: document.getElementById('programme').value,
+        address: document.getElementById('address').value.trim()
+      };
+
+      if (!Object.values(formData).every(Boolean)) {
+        showToast('Please fill all required fields', 'error');
+        return;
+      }
+
+      showToast('Registration submitted successfully! Our team will contact you soon.', 'success');
+      e.target.reset();
+    }
+
+    function handleFeedback(e) {
+      e.preventDefault();
+      const feedbackData = {
+        name: document.getElementById('fbName').value.trim(),
+        rating: currentRating,
+        feedback: document.getElementById('feedbackText').value.trim(),
+        suggestion: document.getElementById('suggestion').value.trim()
+      };
+
+      if (!feedbackData.rating || !feedbackData.feedback) {
+        showToast('Please provide both rating and feedback', 'error');
+        return;
+      }
+
+      showToast('Thank you for your valuable feedback!', 'success');
+      e.target.reset();
+      currentRating = 0;
+      updateStars();
+    }
+
+    function setRating(rating) {
+      currentRating = rating;
+      updateStars();
+    }
+
+    function updateStars() {
+      document.querySelectorAll('.star').forEach((star, index) => {
+        star.style.color = index < currentRating ? 'var(--secondary-color)' : '#ddd';
+      });
+    }
+
+    function showToast(message, type) {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Initialize with home page
+    showPage('home');
+  </script>
+</body>
+</html>
